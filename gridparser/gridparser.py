@@ -3,11 +3,13 @@ import chemcoord as cc
 import numpy as np
 import re
 import io
+import line_profiler
+from line_profiler import LineProfiler
 # from . import _pandas_wrapper
 from . import export
 
 
-def _split(string, seperate_newline = True):
+def split(string, seperate_newline = True):
     if seperate_newline:
         return list(filter(None, re.split("[, =]+|(\\n)+", string)))
     else:
@@ -24,7 +26,7 @@ def parse_grid(file):
     Returns:
         dict: Dictionary with 4 keys:
 
-            **grid_metadata**: Metadata of the grid.
+            **metadata**: Metadata of the grid.
 
             **orbitals**: Nested dictionary::
 
@@ -48,49 +50,42 @@ def parse_grid(file):
             **molecule**: A chemcoord instance containing information about the
             coordinates of the molecule.
     """
-    grid_metadata = {}
+    metadata = {}
     orbitals_metadata = {}
+    orbitals = {}
 
     f = open(file, 'tr')
-    for _ in range(3):
-        line = _split(f.readline())
-
-    grid_metadata['Natom'] = int(line[1])
+    for _ in range(2):
+        f.readline()
+    line = split(f.readline())
+    metadata['Natom'] = int(line[1])
 
     molecule_in = []
-    for i in range(grid_metadata['Natom']):
-        line = _split(f.readline())
+    for _ in range(metadata['Natom']):
+        line = split(f.readline())
         # The following removes numbers after element symbol
         element_symbol = re.search("[a-zA-Z]", line[0]).group()
         line[0] = element_symbol
         molecule_in.append(' '.join(line))
 
     molecule_in = ' '.join(molecule_in)
-    molecule_in = str(grid_metadata['Natom']) + 2*'\n' + molecule_in
+    molecule_in = str(metadata['Natom']) + (2 * '\n') + molecule_in
     molecule_in = io.StringIO(molecule_in)
-    molecule = cc.xyz_functions.read_xyz(molecule_in)
+    molecule = cc.read(molecule_in, filetype='xyz')
 
     def get_value_and_correct_type(line):
-        key = line[0]
-
         def get_string(line):
             return line[1]
-
         def get_integer(line):
             return int(line[1])
-
         def get_boolean(line):
             return bool(line[1])
-
         def get_floating(line):
             return float(line[1])
-
         def get_int_array(line):
             return np.array([int(number) for number in line[1:-1]])
-
         def get_float_array(line):
             return np.array([float(number) for number in line[1:-1]])
-
         def get_list(line):
             return line[1:-1]
 
@@ -112,36 +107,36 @@ def parse_grid(file):
         actions['Axis_3'] = get_float_array
         actions['GridName'] =  get_list
         actions['GridName'] = get_string
-        # actions['Title'] = get_string  == is apparently not a part of metadata
-        return actions[key](line)
+        return actions[line[0]](line)
 
-    end_of_grid_metadata_reached = False
-    while not end_of_grid_metadata_reached:
-        line = _split(f.readline())
+    end_of_metadata_reached = False
+    while not end_of_metadata_reached:
+        line = split(f.readline())
         if line[0] == 'GridName':
-            end_of_grid_metadata_reached = True
+            end_of_metadata_reached = True
         else:
             current_line = f.tell()
             key = line[0]
-            grid_metadata[key] = get_value_and_correct_type(line)
+            metadata[key] = get_value_and_correct_type(line)
     f.seek(current_line, 0)
 
-    orbitals = {}
-    order_of_orbitals = []
 
-    for _ in range(grid_metadata['N_of_Grids']):
-        line = _split(f.readline())
+    order_of_orbitals = []
+    for _ in range(metadata['N_of_Grids']):
+        line = split(f.readline())
         try:
             symmetry_charakter = int(line[1])
             number_of_order = int(line[2])
         except ValueError:
             # because int('Density') just does not work
+            # Density is totally symmetric => symmetry_charakter=1
+            # grid files are 1 indexed => 0 is magic number
             symmetry_charakter = 1
             number_of_order = 0
 
         order_of_orbitals.append((symmetry_charakter, number_of_order))
 
-        value = np.full((grid_metadata['N_of_Points'], 4), '0', dtype='a30')
+        value = np.full((metadata['N_of_Points'], 4), '0', dtype='a30')
         try:
             orbitals[symmetry_charakter][number_of_order] = value
         except KeyError:
@@ -167,25 +162,61 @@ def parse_grid(file):
                 current['status'] = line[5]
 
 
-    for current_block in range(grid_metadata['N_Blocks'] - 1):
-        offset = current_block * grid_metadata['Block_Size']
-        for orbital in range(grid_metadata['N_of_Grids']):
+
+    dimension Value(0:Net1, 0:Net2, 0:Net3,1:N_of_Grids)
+
+i1=i2=i3=0;
+
+for (ib=0; ib<N_Blocks; ib++)
+{
+ for (ig=0; ig<N_of_Grids; ig++)
+ {
+   read_string_title;
+   ix=Block_Size; if (ib==N_Blocks) { ix=N_of_Points-Block_Size*(N_Blocks-1);}
+   for (ip=0; ip<ix; ip++)
+   {
+     Q=read_number;
+     Value[i1,i2,i3,ig]=Q;
+     /* increment indexes in 3d array */
+     i3++;
+     if(i3 > Net1) {
+         i3=0; i2++
+     }
+     if(i2 > Net2) {
+         i2=0; i1++
+    }
+
+   }
+ }
+}
+
+ (i1,i2,i3) has coords in a.u.:
+ X=Orig[1]+i1*Axis(1,1)/Net1
+ Y=Orig[2]+i2*Axis(2,2)/Net2
+ Z=Orig[3]+i3*Axis(3,3)/Net3
+
+
+
+    # TODO from here on performance
+    last_block_size = (metadata['N_P']
+                       - metadata['Block_Size'] * (metadata['N_Blocks'] - 1))
+
+    for current_block in range(metadata['N_Blocks'] - 1):
+        offset = current_block * metadata['Block_Size']
+        for orbital in range(metadata['N_of_Grids']):
             symmetry_charakter, number_of_order = order_of_orbitals[orbital]
+            current_array = orbitals[symmetry_charakter][number_of_order]
             f.readline() # omit Title = ...
-            for i in range(grid_metadata['Block_Size']):
-                current_array = orbitals[symmetry_charakter][number_of_order]
+            for i in range(metadata['Block_Size']):
                 line = f.readline()
                 current_array[offset + i, -1] = line
 
-    last_block_size = (
-        grid_metadata['N_P']
-        - grid_metadata['Block_Size'] * (grid_metadata['N_Blocks'] - 1))
-    offset = (grid_metadata['N_Blocks'] - 1) * grid_metadata['Block_Size']
-    for orbital in range(grid_metadata['N_of_Grids']):
+    offset = (metadata['N_Blocks'] - 1) * metadata['Block_Size']
+    for orbital in range(metadata['N_of_Grids']):
         symmetry_charakter, number_of_order = order_of_orbitals[orbital]
+        current_array = orbitals[symmetry_charakter][number_of_order]
         f.readline() # omit Title = ...
         for i in range(last_block_size):
-            current_array = orbitals[symmetry_charakter][number_of_order]
             line = f.readline()
             current_array[offset + i, -1] = line
 
@@ -197,7 +228,7 @@ def parse_grid(file):
                 columns=['x', 'y', 'z', 'value'])
 
     value_to_return = {
-        'grid_metadata' : grid_metadata,
+        'metadata' : metadata,
         'orbitals_metadata' : orbitals_metadata,
         'orbitals' : orbitals,
         'molecule' : molecule}
