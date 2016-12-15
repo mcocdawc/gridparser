@@ -1,0 +1,128 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+split	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^def split(string, seperate_newline = True):$/;"	function	line:12
+parse_grid	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^def parse_grid(file):$/;"	function	line:20
+get_value_and_correct_type	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^    def get_value_and_correct_type(line):$/;"	function	line:76	function:parse_grid
+get_string	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_string(line):$/;"	function	line:77	function:parse_grid.get_value_and_correct_type
+get_integer	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_integer(line):$/;"	function	line:79	function:parse_grid.get_value_and_correct_type
+get_boolean	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_boolean(line):$/;"	function	line:81	function:parse_grid.get_value_and_correct_type
+get_floating	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_floating(line):$/;"	function	line:83	function:parse_grid.get_value_and_correct_type
+get_int_array	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_int_array(line):$/;"	function	line:85	function:parse_grid.get_value_and_correct_type
+get_float_array	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_float_array(line):$/;"	function	line:87	function:parse_grid.get_value_and_correct_type
+get_list	/home/mcocdawc/code/git/gridparser/gridparser/gridparser.py	/^        def get_list(line):$/;"	function	line:89	function:parse_grid.get_value_and_correct_type
+export	/home/mcocdawc/code/git/gridparser/gridparser/__init__.py	/^def export(func):$/;"	function	line:4
+Core	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^class Core(object):$/;"	class	line:21
+__len__	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def __len__(self):$/;"	member	line:32	class:Core	file:
+index	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def index(self):$/;"	member	line:36	class:Core
+index	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def index(self, value):$/;"	member	line:44	class:Core
+columns	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def columns(self):$/;"	member	line:49	class:Core
+columns	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def columns(self, value):$/;"	member	line:57	class:Core
+__repr__	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def __repr__(self):$/;"	member	line:61	class:Core	file:
+_repr_html_	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def _repr_html_(self):$/;"	member	line:64	class:Core
+_is_physical	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def _is_physical(self, columns):$/;"	member	line:70	class:Core
+__getitem__	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def __getitem__(self, key):$/;"	member	line:80	class:Core	file:
+__setitem__	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def __setitem__(self, key, value):$/;"	member	line:98	class:Core	file:
+sort_values	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def sort_values(self,$/;"	member	line:101	class:Core
+sort_index	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def sort_index(self,$/;"	member	line:143	class:Core
+replace	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def replace(self,$/;"	member	line:203	class:Core
+set_index	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def set_index(self, keys, drop=True, append=False, inplace=False, verify_integrity=False):$/;"	member	line:326	class:Core
+append	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def append(self, other, ignore_index=False, verify_integrity=False):$/;"	member	line:382	class:Core
+insert	/home/mcocdawc/code/git/gridparser/gridparser/_pandas_wrapper.py	/^    def insert(self, loc, column, value, allow_duplicates=False, inplace=False):$/;"	member	line:442	class:Core
+extensions	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^extensions = [$/;"	variable	line:64
+templates_path	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^templates_path = [u'_templates']$/;"	variable	line:83
+source_suffix	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^source_suffix = u'.rst'$/;"	variable	line:88
+master_doc	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^master_doc = u'index'$/;"	variable	line:94
+project	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^project = u'gridparser'$/;"	variable	line:97
+copyright	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^copyright = u'2016, Oskar Weser'$/;"	variable	line:98
+author	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^author = u'Oskar Weser'$/;"	variable	line:99
+version	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^version = u'1.0'$/;"	variable	line:106
+release	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^release = u'1.0.0'$/;"	variable	line:108
+language	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^language = None$/;"	variable	line:115
+exclude_patterns	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^exclude_patterns = [u'_build']$/;"	variable	line:125
+pygments_style	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^pygments_style = u'sphinx'$/;"	variable	line:143
+todo_include_todos	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^todo_include_todos = True$/;"	variable	line:152
+html_theme	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^html_theme = u'sphinx_rtd_theme'$/;"	variable	line:159
+html_static_path	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^html_static_path = [u'_static']$/;"	variable	line:188
+htmlhelp_basename	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^htmlhelp_basename = u'gridparserdoc'$/;"	variable	line:251
+latex_elements	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^latex_elements = {$/;"	variable	line:255
+latex_documents	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^latex_documents = [$/;"	variable	line:272
+man_pages	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^man_pages = [$/;"	variable	line:302
+texinfo_documents	/home/mcocdawc/code/git/gridparser/docs/source/conf.py	/^texinfo_documents = [$/;"	variable	line:316
+SPHINXBUILD	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^	set SPHINXBUILD=sphinx-build$/;"	variable	line:6
+BUILDDIR	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^set BUILDDIR=build$/;"	variable	line:8
+ALLSPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^set ALLSPHINXOPTS=-d %BUILDDIR%\/doctrees %SPHINXOPTS% source$/;"	variable	line:9
+I18NSPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^set I18NSPHINXOPTS=%SPHINXOPTS% source$/;"	variable	line:10
+ALLSPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^	set ALLSPHINXOPTS=-D latex_paper_size=%PAPER% %ALLSPHINXOPTS%$/;"	variable	line:12
+I18NSPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^	set I18NSPHINXOPTS=-D latex_paper_size=%PAPER% %I18NSPHINXOPTS%$/;"	variable	line:13
+PAPER	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^	echo.  latex      to make LaTeX files, you can set PAPER=a4 or PAPER=letter$/;"	variable	line:31
+sphinx_python	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^:sphinx_python$/;"	label	line:58
+SPHINXBUILD	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^set SPHINXBUILD=python -m sphinx.__init__$/;"	variable	line:60
+sphinx_ok	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^:sphinx_ok$/;"	label	line:74
+end	/home/mcocdawc/code/git/gridparser/docs/make.bat	/^:end$/;"	label	line:281
+SPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^SPHINXOPTS    =$/;"	macro	line:5
+SPHINXBUILD	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^SPHINXBUILD   = sphinx-build$/;"	macro	line:6
+PAPER	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^PAPER         =$/;"	macro	line:7
+BUILDDIR	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^BUILDDIR      = build$/;"	macro	line:8
+PAPEROPT_a4	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^PAPEROPT_a4     = -D latex_paper_size=a4$/;"	macro	line:11
+PAPEROPT_letter	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^PAPEROPT_letter = -D latex_paper_size=letter$/;"	macro	line:12
+ALLSPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^ALLSPHINXOPTS   = -d $(BUILDDIR)\/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source$/;"	macro	line:13
+I18NSPHINXOPTS	/home/mcocdawc/code/git/gridparser/docs/Makefile	/^I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source$/;"	macro	line:15
+ALLDOCS	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^ALLDOCS = $(basename $(wildcard *.tex))$/;"	macro	line:3
+ALLPDF	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^ALLPDF = $(addsuffix .pdf,$(ALLDOCS))$/;"	macro	line:4
+ALLDVI	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^ALLDVI = $(addsuffix .dvi,$(ALLDOCS))$/;"	macro	line:5
+ARCHIVEPRREFIX	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^ARCHIVEPRREFIX =$/;"	macro	line:8
+LATEXOPTS	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^LATEXOPTS =$/;"	macro	line:10
+FMT	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^FMT = pdf$/;"	macro	line:12
+LATEX	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^LATEX = latex$/;"	macro	line:14
+PDFLATEX	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^PDFLATEX = pdflatex$/;"	macro	line:15
+MAKEINDEX	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^MAKEINDEX = makeindex$/;"	macro	line:16
+kanji	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^	for f in *.tex; do platex -kanji=utf8 $(LATEXOPTS) $$f; done$/;"	macro	line:26
+kanji	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^	for f in *.tex; do platex -kanji=utf8 $(LATEXOPTS) $$f; done$/;"	macro	line:27
+kanji	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^	for f in *.tex; do platex -kanji=utf8 $(LATEXOPTS) $$f; done$/;"	macro	line:28
+kanji	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^	for f in *.tex; do platex -kanji=utf8 $(LATEXOPTS) $$f; done$/;"	macro	line:30
+kanji	/home/mcocdawc/code/git/gridparser/docs/build/latex/Makefile	/^	for f in *.tex; do platex -kanji=utf8 $(LATEXOPTS) $$f; done$/;"	macro	line:31
+MAIN_PACKAGE	/home/mcocdawc/code/git/gridparser/setup.py	/^MAIN_PACKAGE = 'gridparser'$/;"	variable	line:12
+DESCRIPTION	/home/mcocdawc/code/git/gridparser/setup.py	/^DESCRIPTION = "Python module for dealing with chemical coordinates."$/;"	variable	line:13
+VERSION	/home/mcocdawc/code/git/gridparser/setup.py	/^VERSION = '0.0.0'$/;"	variable	line:14
+LICENSE	/home/mcocdawc/code/git/gridparser/setup.py	/^LICENSE = 'LGPLv3'$/;"	variable	line:15
+AUTHOR	/home/mcocdawc/code/git/gridparser/setup.py	/^AUTHOR = 'Oskar Weser'$/;"	variable	line:16
+EMAIL	/home/mcocdawc/code/git/gridparser/setup.py	/^EMAIL = 'oskar.weser@gmail.com'$/;"	variable	line:17
+URL	/home/mcocdawc/code/git/gridparser/setup.py	/^URL = 'https:\/\/github.com\/mcocdawc\/chemcoord'$/;"	variable	line:18
+REQUIRES	/home/mcocdawc/code/git/gridparser/setup.py	/^REQUIRES = [$/;"	variable	line:19
+KEYWORDS	/home/mcocdawc/code/git/gridparser/setup.py	/^KEYWORDS = ['molcas']$/;"	variable	line:22
+CLASSIFIERS	/home/mcocdawc/code/git/gridparser/setup.py	/^CLASSIFIERS = [$/;"	variable	line:24
+readme	/home/mcocdawc/code/git/gridparser/setup.py	/^def readme():$/;"	function	line:37
+setup_package	/home/mcocdawc/code/git/gridparser/setup.py	/^def setup_package():$/;"	function	line:43
+gridparser	/home/mcocdawc/code/git/gridparser/README.md	/^# gridparser$/;"	function	line:1
+_split	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^def _split(string, seperate_newline = True):$/;"	function	line:12
+parse_grid	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^def parse_grid(file):$/;"	function	line:20
+get_value_and_correct_type	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^    def get_value_and_correct_type(line):$/;"	function	line:76	function:parse_grid
+get_string	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_string(line):$/;"	function	line:77	function:parse_grid.get_value_and_correct_type
+get_integer	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_integer(line):$/;"	function	line:79	function:parse_grid.get_value_and_correct_type
+get_boolean	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_boolean(line):$/;"	function	line:81	function:parse_grid.get_value_and_correct_type
+get_floating	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_floating(line):$/;"	function	line:83	function:parse_grid.get_value_and_correct_type
+get_int_array	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_int_array(line):$/;"	function	line:85	function:parse_grid.get_value_and_correct_type
+get_float_array	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_float_array(line):$/;"	function	line:87	function:parse_grid.get_value_and_correct_type
+get_list	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/gridparser.py	/^        def get_list(line):$/;"	function	line:89	function:parse_grid.get_value_and_correct_type
+export	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/__init__.py	/^def export(func):$/;"	function	line:4
+Core	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^class Core(object):$/;"	class	line:21
+__len__	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def __len__(self):$/;"	member	line:32	class:Core	file:
+index	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def index(self):$/;"	member	line:36	class:Core
+index	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def index(self, value):$/;"	member	line:44	class:Core
+columns	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def columns(self):$/;"	member	line:49	class:Core
+columns	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def columns(self, value):$/;"	member	line:57	class:Core
+__repr__	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def __repr__(self):$/;"	member	line:61	class:Core	file:
+_repr_html_	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def _repr_html_(self):$/;"	member	line:64	class:Core
+_is_physical	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def _is_physical(self, columns):$/;"	member	line:70	class:Core
+__getitem__	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def __getitem__(self, key):$/;"	member	line:80	class:Core	file:
+__setitem__	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def __setitem__(self, key, value):$/;"	member	line:98	class:Core	file:
+sort_values	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def sort_values(self,$/;"	member	line:101	class:Core
+sort_index	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def sort_index(self,$/;"	member	line:143	class:Core
+replace	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def replace(self,$/;"	member	line:203	class:Core
+set_index	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def set_index(self, keys, drop=True, append=False, inplace=False, verify_integrity=False):$/;"	member	line:326	class:Core
+append	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def append(self, other, ignore_index=False, verify_integrity=False):$/;"	member	line:382	class:Core
+insert	/home/mcocdawc/code/git/gridparser/build/lib/gridparser/_pandas_wrapper.py	/^    def insert(self, loc, column, value, allow_duplicates=False, inplace=False):$/;"	member	line:442	class:Core
