@@ -3,8 +3,8 @@ import chemcoord as cc
 import numpy as np
 import re
 import io
-import line_profiler
-from line_profiler import LineProfiler
+# import line_profiler
+# from line_profiler import LineProfiler
 # from . import _pandas_wrapper
 from . import export
 # TODO improve
@@ -29,7 +29,7 @@ class Grid():
                                     dtype='f8')
         i1 = i2 = i3 = 0
         for row in range(fractional_coord.shape[0]):
-            fractional_coord[row, :3] = [i1, i2, i3]
+            fractional_coord[row, :3] = [i3, i2, i1]
             i1 = i1 + 1
             if i1 > self.metadata['Net'][0]:
                 i1 = 0
@@ -41,7 +41,8 @@ class Grid():
         basis = self.metadata['Axis'] / (self.metadata['Net'] + 1)
         increment = (basis[None, :] * fractional_coord[:, None]).sum(axis=1)
         location = increment + self.metadata['Origin']
-        location = location * conversion['from Bohr'] * conversion['to angstrom']
+        location = (location
+                    * conversion['from Bohr'] * conversion['to angstrom'])
 
         orbital = pd.DataFrame(np.empty([self.metadata['N_of_Points'], 4]),
                                columns=['x', 'y', 'z', 'value'])
@@ -49,9 +50,14 @@ class Grid():
         return orbital
 
     def __repr__(self):
-        # TODO density as own stuff
-        string_list = ['{0} orbitals in symmetry character {1}\n'.format(
-            len(self._orbitals[key]), key) for key in self._orbitals.keys()]
+        treat_density = True if 0 in self._orbitals[1] else False
+        string_list = ['1 Electronic density\n'] if treat_density else []
+        for symm_char in self._orbitals.keys():
+            N_orb = len(self._orbitals[symm_char])
+            N_orb = N_orb - 1 if symm_char == 1 and treat_density else N_orb
+            text = '{0} orbitals in symmetry character {1}\n'.format(
+                N_orb, symm_char)
+            string_list.append(text)
         return ''.join(string_list)
 
     def __add__(self, other):
