@@ -7,7 +7,7 @@ import io
 from . import export
 
 
-def _split(string, seperate_newline = True):
+def _split(string, seperate_newline=True):
     if seperate_newline:
         return list(filter(None, re.split("[, =]+|(\\n)+", string)))
     else:
@@ -68,7 +68,7 @@ def parse_grid(file):
     molecule_in = ' '.join(molecule_in)
     molecule_in = str(grid_metadata['Natom']) + 2*'\n' + molecule_in
     molecule_in = io.StringIO(molecule_in)
-    molecule = cc.xyz_functions.read_xyz(molecule_in)
+    molecule = cc.Cartesian.read_xyz(molecule_in)
 
     def get_value_and_correct_type(line):
         key = line[0]
@@ -103,16 +103,16 @@ def parse_grid(file):
         actions['N_Blocks'] = get_integer
         actions['Is_cutoff'] = get_boolean
         actions['CutOff'] = get_floating
-        actions['N_P'] =  get_integer
+        actions['N_P'] = get_integer
         actions['N_INDEX'] = get_list
         actions['Net'] = get_int_array
         actions['Origin'] = get_float_array
         actions['Axis_1'] = get_float_array
         actions['Axis_2'] = get_float_array
         actions['Axis_3'] = get_float_array
-        actions['GridName'] =  get_list
+        actions['GridName'] = get_list
         actions['GridName'] = get_string
-        # actions['Title'] = get_string  == is apparently not a part of metadata
+        # actions['Title'] = get_string == is apparently not a part of metadata
         return actions[key](line)
 
     end_of_grid_metadata_reached = False
@@ -145,12 +145,12 @@ def parse_grid(file):
         try:
             orbitals[symmetry_charakter][number_of_order] = value
         except KeyError:
-            orbitals[symmetry_charakter] = {number_of_order : value}
+            orbitals[symmetry_charakter] = {number_of_order: value}
 
         try:
             orbitals_metadata[symmetry_charakter][number_of_order] = {}
         except KeyError:
-            orbitals_metadata[symmetry_charakter] = {number_of_order : {}}
+            orbitals_metadata[symmetry_charakter] = {number_of_order: {}}
 
         finally:
             current = orbitals_metadata[symmetry_charakter][number_of_order]
@@ -166,12 +166,11 @@ def parse_grid(file):
                 current['occupation'] = float(re.sub('[\(\)]', '', line[4]))
                 current['status'] = line[5]
 
-
     for current_block in range(grid_metadata['N_Blocks'] - 1):
         offset = current_block * grid_metadata['Block_Size']
         for orbital in range(grid_metadata['N_of_Grids']):
             symmetry_charakter, number_of_order = order_of_orbitals[orbital]
-            f.readline() # omit Title = ...
+            f.readline()  # omit Title = ...
             for i in range(grid_metadata['Block_Size']):
                 current_array = orbitals[symmetry_charakter][number_of_order]
                 line = f.readline()
@@ -183,7 +182,7 @@ def parse_grid(file):
     offset = (grid_metadata['N_Blocks'] - 1) * grid_metadata['Block_Size']
     for orbital in range(grid_metadata['N_of_Grids']):
         symmetry_charakter, number_of_order = order_of_orbitals[orbital]
-        f.readline() # omit Title = ...
+        f.readline()  # omit Title = ...
         for i in range(last_block_size):
             current_array = orbitals[symmetry_charakter][number_of_order]
             line = f.readline()
@@ -192,13 +191,13 @@ def parse_grid(file):
     for symmetry_charakter in orbitals.keys():
         for number_of_order in orbitals[symmetry_charakter].keys():
             orbitals[symmetry_charakter][number_of_order] = \
-            pd.DataFrame(
-                orbitals[symmetry_charakter][number_of_order].astype('f8'),
-                columns=['x', 'y', 'z', 'value'])
+                pd.DataFrame(
+                    orbitals[symmetry_charakter][number_of_order].astype('f8'),
+                    columns=['x', 'y', 'z', 'value'])
 
     value_to_return = {
-        'grid_metadata' : grid_metadata,
-        'orbitals_metadata' : orbitals_metadata,
-        'orbitals' : orbitals,
-        'molecule' : molecule}
+        'grid_metadata': grid_metadata,
+        'orbitals_metadata': orbitals_metadata,
+        'orbitals': orbitals,
+        'molecule': molecule}
     return value_to_return
