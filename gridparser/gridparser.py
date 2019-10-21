@@ -7,8 +7,10 @@ import io
 # from line_profiler import LineProfiler
 # from . import _pandas_wrapper
 from . import export
-# TODO improve
-from constants import constants, conversion
+
+from scipy.constants import physical_constants
+
+BOHR_TO_A = physical_constants['Bohr radius'][0] * 1e10
 
 def split(string, seperate_newline = True):
     if seperate_newline:
@@ -40,9 +42,7 @@ class Grid():
 
         basis = self.metadata['Axis'] / (self.metadata['Net'] + 1)
         increment = (basis[None, :] * fractional_coord[:, None]).sum(axis=1)
-        location = increment + self.metadata['Origin']
-        location = (location
-                    * conversion['from Bohr'] * conversion['to angstrom'])
+        location = (increment + self.metadata['Origin']) * BOHR_TO_A
 
         orbital = pd.DataFrame(np.empty([self.metadata['N_of_Points'], 4]),
                                columns=['x', 'y', 'z', 'value'])
@@ -50,7 +50,7 @@ class Grid():
         return orbital
 
     def __repr__(self):
-        treat_density = True if 0 in self._orbitals[1] else False
+        treat_density = 0 in self._orbitals[1]
         string_list = ['1 Electronic density\n'] if treat_density else []
         for symm_char in self._orbitals.keys():
             N_orb = len(self._orbitals[symm_char])
@@ -130,7 +130,8 @@ class Grid():
         molecule_in = ' '.join(molecule_in)
         molecule_in = str(metadata['Natom']) + (2 * '\n') + molecule_in
         molecule_in = io.StringIO(molecule_in)
-        molecule = cc.read(molecule_in, filetype='xyz')
+#          molecule = cc.read(molecule_in, filetype='xyz')
+        molecule = cc.Cartesian.read_xyz(molecule_in)
 
         def get_value_and_correct_type(line):
             def get_string(line):
